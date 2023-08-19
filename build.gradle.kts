@@ -61,7 +61,7 @@ val getGitHash = {
 
 pact {
     publish {
-        pactDirectory = "consumer/build/pacts"
+        pactDirectory = "build/pacts"
         pactBrokerUrl = "http://16.171.86.61/"
 //        pactBrokerUsername = 'pact_workshop'
 //        pactBrokerPassword = 'pact_workshop'
