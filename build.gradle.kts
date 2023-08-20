@@ -45,7 +45,7 @@ val getGitBranch = {
 val getGitHash = {
     val stdout = ByteArrayOutputStream()
     exec {
-        commandLine("git", "rev-parse", "--short", "HEAD")
+        commandLine("git", "rev-parse", "--short", System.getenv("GITHUB_SHA"))
         standardOutput = stdout
     }
     stdout.toString().trim()
