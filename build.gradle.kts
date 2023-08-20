@@ -79,4 +79,5 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+    println("hkeeeeee branch: $getGitBranch")
 }
