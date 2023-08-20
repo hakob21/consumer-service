@@ -35,7 +35,7 @@ dependencies {
 val getGitBranch = {
     val stdout = ByteArrayOutputStream()
     exec {
-        commandLine("git", "rev-parse", "--abbrev-ref", "HEAD")
+        commandLine("git", "rev-parse", "--symbolic-full-name", "--abbrev-ref", "HEAD")
         standardOutput = stdout
     }
     stdout.toString().trim()
@@ -80,4 +80,5 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
     useJUnitPlatform()
     println("hkeeeeee branch: ${getGitBranch()}")
+    println("hkeeeeee git commit hash: ${getGitHash()}")
 }
