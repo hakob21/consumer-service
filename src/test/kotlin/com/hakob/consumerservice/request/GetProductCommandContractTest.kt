@@ -40,6 +40,7 @@ class GetProductCommandContractTest {
 //                    Product("product1")
 //                }.asBody()
             ).toPact(V4Pact::class.java)
+
 //            .expectsToReceiveHttpInteraction(
 //                "fads"
 //            ) { builder ->
