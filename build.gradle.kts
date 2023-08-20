@@ -35,8 +35,8 @@ dependencies {
 val getGitBranch = {
     val stdout = ByteArrayOutputStream()
     exec {
-//        commandLine("git", "rev-parse", "--symbolic-full-name", "--abbrev-ref", "HEAD")
-        commandLine("git", "log", "-n", "1", "--pretty=%d", "HEAD")
+        commandLine("git", "rev-parse", "--symbolic-full-name", "--abbrev-ref", "HEAD")
+//        commandLine("git", "log", "-n", "1", "--pretty=%d", "HEAD")
         standardOutput = stdout
     }
     stdout.toString().trim()
@@ -45,7 +45,8 @@ val getGitBranch = {
 val getGitHash = {
     val stdout = ByteArrayOutputStream()
     exec {
-        commandLine("git", "rev-parse", "--short", System.getenv("GITHUB_SHA"))
+        //        commandLine("git", "rev-parse", "--short", System.getenv("GITHUB_SHA"))
+        commandLine("git", "rev-parse", "--short", "HEAD")
         standardOutput = stdout
     }
     stdout.toString().trim()
