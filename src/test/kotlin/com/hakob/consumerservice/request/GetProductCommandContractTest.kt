@@ -33,7 +33,9 @@ class GetProductCommandContractTest {
             .body(
 //                "sdfas"
 
-                PactDslJsonBody().stringValue("productName","product1")
+                PactDslJsonBody()
+                    .stringValue("productName","product1")
+                    .stringValue("productType", "productType")
 //                newJsonObject {
 //                    Product("product1")
 //                }.asBody()
