@@ -35,7 +35,8 @@ dependencies {
 val getGitBranch = {
     val stdout = ByteArrayOutputStream()
     exec {
-        commandLine("git", "rev-parse", "--symbolic-full-name", "--abbrev-ref", "HEAD")
+//        commandLine("git", "rev-parse", "--symbolic-full-name", "--abbrev-ref", "HEAD")
+        commandLine("git", "log", "-n", "1", "--pretty=%d", "HEAD")
         standardOutput = stdout
     }
     stdout.toString().trim()
