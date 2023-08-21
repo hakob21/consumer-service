@@ -35,8 +35,8 @@ class GetProductCommandContractTest {
 
                 PactDslJsonBody()
                     .stringValue("productName","product1")
-                    .stringValue("productType", "productType1")
-//                    .stringValue("productType", "productTypeValue")
+//                    .stringValue("productType", "productType1")
+                    .stringValue("productType", "productTypeValue")
 //                newJsonObject {
 //                    Product("product1")
 //                }.asBody()
