@@ -83,8 +83,8 @@ tasks.withType<Test> {
     useJUnitPlatform()
     println("hkeeeeee branch: ${getGitBranch()}")
     println("hkeeeeee git commit hash: ${getGitHash()}")
-    val sourceBranchName = System.getenv("GITHUB_REF")
-        .removePrefix("refs/heads/") // Remove the "refs/heads/" prefix to get just the branch name
+    val sourceBranchName = System.getenv("EXTRACTED_BRANCH_NAME")
+//        .removePrefix("refs/heads/") // Remove the "refs/heads/" prefix to get just the branch name
     println("hkeeeeee sourceBranchName: ${sourceBranchName}")
 
 }

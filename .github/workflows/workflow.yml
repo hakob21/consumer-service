@@ -23,8 +23,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+
       with:
         ref: ${{ github.event.pull_request.head.sha }}
+
+    - name: Get branch name
+      id: branch-name
+      uses: tj-actions/branch-names@v7
+    - name: Set environment variable for current branch
+      run: |
+        echo "EXTRACTED_BRANCH_NAME=${{ steps.branch-name.outputs.current_branch }}" >> $GITHUB_ENV
+
     - name: Set up JDK 17
       uses: actions/setup-java@v3
       with:
