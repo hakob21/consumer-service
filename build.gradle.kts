@@ -33,13 +33,14 @@ dependencies {
 }
 
 val getGitBranch = {
-    val stdout = ByteArrayOutputStream()
-    exec {
-        commandLine("git", "rev-parse", "--symbolic-full-name", "--abbrev-ref", "HEAD")
-//        commandLine("git", "log", "-n", "1", "--pretty=%d", "HEAD")
-        standardOutput = stdout
-    }
-    stdout.toString().trim()
+//    val stdout = ByteArrayOutputStream()
+//    exec {
+//        commandLine("git", "rev-parse", "--symbolic-full-name", "--abbrev-ref", "HEAD")
+//        standardOutput = stdout
+//    }
+//    stdout.toString().trim()
+    val sourceBranchName = System.getenv("EXTRACTED_BRANCH_NAME")
+    sourceBranchName
 }
 
 val getGitHash = {
@@ -81,10 +82,8 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
-    println("hkeeeeee branch: ${getGitBranch()}")
-    println("hkeeeeee git commit hash: ${getGitHash()}")
-    val sourceBranchName = System.getenv("EXTRACTED_BRANCH_NAME")
+//    println("hkeeeeee branch: ${getGitBranch()}")
+//    println("hkeeeeee git commit hash: ${getGitHash()}")
 //        .removePrefix("refs/heads/") // Remove the "refs/heads/" prefix to get just the branch name
-    println("hkeeeeee sourceBranchName: ${sourceBranchName}")
-
+//    println("hkeeeeee sourceBranchName: ${sourceBranchName}")
 }
