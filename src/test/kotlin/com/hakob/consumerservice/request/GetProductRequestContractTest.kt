@@ -29,6 +29,7 @@ class GetProductRequestContractTest {
                 PactDslJsonBody()
                     .stringValue("productName", "product1")
                     .stringValue("productType", "productType1")
+                    .stringValue("newField1", "newField1")
             ).toPact(V4Pact::class.java)
 
     }
