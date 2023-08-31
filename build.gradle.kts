@@ -2,7 +2,6 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.io.ByteArrayOutputStream
 import kotlin.collections.listOf
 
-
 plugins {
     id("org.springframework.boot") version "3.1.2"
     id("io.spring.dependency-management") version "1.1.2"
@@ -46,28 +45,17 @@ val getGitBranch = {
 val getGitHash = {
     val stdout = ByteArrayOutputStream()
     exec {
-        //        commandLine("git", "rev-parse", "--short", System.getenv("GITHUB_SHA"))
+        // commandLine("git", "rev-parse", "--short", System.getenv("GITHUB_SHA"))
         commandLine("git", "rev-parse", "--short", "HEAD")
         standardOutput = stdout
     }
     stdout.toString().trim()
 }
 
-//def getGitBranch = { ->
-//    def stdout = new ByteArrayOutputStream()
-//    exec {
-//        commandLine 'git', 'rev-parse', '--abbrev-ref', 'HEAD'
-//        standardOutput = stdout
-//    }
-//    return stdout.toString().trim()
-//}
-
 pact {
     publish {
         pactDirectory = "build/pacts"
         pactBrokerUrl = "http://16.171.86.61/"
-//        pactBrokerUsername = 'pact_workshop'
-//        pactBrokerPassword = 'pact_workshop'
         tags = listOf(getGitBranch(), "test", "prod")
         consumerVersion = getGitHash()
     }
@@ -82,8 +70,4 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
-//    println("hkeeeeee branch: ${getGitBranch()}")
-//    println("hkeeeeee git commit hash: ${getGitHash()}")
-//        .removePrefix("refs/heads/") // Remove the "refs/heads/" prefix to get just the branch name
-//    println("hkeeeeee sourceBranchName: ${sourceBranchName}")
 }
