@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
 
 @Service
-class GetProductCommand(
+class GetProductRequest(
     val restTemplate: RestTemplate = RestTemplate(),
     val baseUrl: String = "http://localhost"
 ) {
@@ -14,11 +14,9 @@ class GetProductCommand(
     val fullUrl = baseUrl + uri
     fun getProduct(): Product {
         val productResponseEntity = restTemplate.exchange(
-//            "http://localhost/product",
             fullUrl,
             HttpMethod.GET,
             null,
-//            String::class.java
             Product::class.java
         )
         return productResponseEntity.body!!
