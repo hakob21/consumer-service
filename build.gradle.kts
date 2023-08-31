@@ -7,7 +7,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.2"
     kotlin("jvm") version "1.8.22"
     kotlin("plugin.spring") version "1.8.22"
-    id("au.com.dius.pact") version "4.1.7"
+    id("au.com.dius.pact") version "4.6.2"
 
 }
 
@@ -32,14 +32,19 @@ dependencies {
 }
 
 val getGitBranch = {
-//    val stdout = ByteArrayOutputStream()
-//    exec {
-//        commandLine("git", "rev-parse", "--symbolic-full-name", "--abbrev-ref", "HEAD")
-//        standardOutput = stdout
-//    }
-//    stdout.toString().trim()
-    val sourceBranchName = System.getenv("EXTRACTED_BRANCH_NAME")
-    sourceBranchName
+    if (System.getenv("EXTRACTED_BRANCH_NAME") != null) {
+        // in CI pipeline
+        val sourceBranchName = System.getenv("EXTRACTED_BRANCH_NAME")
+        sourceBranchName
+    } else {
+        // locally
+        val stdout = ByteArrayOutputStream()
+        exec {
+            commandLine("git", "rev-parse", "--symbolic-full-name", "--abbrev-ref", "HEAD")
+            standardOutput = stdout
+        }
+        stdout.toString().trim()
+    }
 }
 
 val getGitHash = {
@@ -59,6 +64,20 @@ pact {
         tags = listOf(getGitBranch(), "test", "prod")
         consumerVersion = getGitHash()
     }
+    broker {
+        pactBrokerUrl = "http://16.171.86.61/"
+
+        // To use basic auth
+//        pactBrokerUsername = '<USERNAME>'
+//        pactBrokerPassword = '<PASSWORD>'
+
+        // OR to use a bearer token
+//        pactBrokerToken = '<TOKEN>'
+
+        // Customise the authentication header from the default `Authorization`
+//        pactBrokerAuthenticationHeader = 'my-auth-header'
+    }
+
 }
 
 tasks.withType<KotlinCompile> {
