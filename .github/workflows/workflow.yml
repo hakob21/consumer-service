@@ -47,10 +47,7 @@ jobs:
         with:
           arguments: pactPublish
 
-#      - name: can-i-deploy
-#        uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
-#        with:
-#          arguments: |
-#            canideploy
-#            -Ppacticipant='consumer-service'
-#            -Platest=true
+      - name: can-i-deploy
+        uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
+        with:
+          arguments: canideploy -Ppacticipant='consumer-service' -Platest=true
