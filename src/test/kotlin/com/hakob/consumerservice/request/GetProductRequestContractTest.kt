@@ -30,7 +30,6 @@ class GetProductRequestContractTest {
                     .stringValue("productName", "product1")
                     .stringValue("productType", "productType1")
                     .stringValue("newField1", "newField1")
-                    .stringValue("newField2", "newField2")
             ).toPact(V4Pact::class.java)
 
     }
