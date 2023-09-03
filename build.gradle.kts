@@ -66,7 +66,7 @@ pact {
     }
     broker {
         pactBrokerUrl = "http://16.171.86.61/"
-        retryCountWhileUnknown = 3
+        retryCountWhileUnknown = 7
         retryWhileUnknownInterval = 30
 
         // To use basic auth
